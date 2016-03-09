@@ -1,11 +1,11 @@
 <?php
 
-namespace Mosaic\Exceptions\Definitions;
+namespace Mosaic\Exceptions\Providers;
 
 use Interop\Container\Definition\DefinitionProviderInterface;
 use Mosaic\Exceptions\Runner;
 
-abstract class ExceptionHandlerDefinition implements DefinitionProviderInterface
+abstract class ExceptionHandlerProvider implements DefinitionProviderInterface
 {
     /**
      * Returns the definition to register in the container.

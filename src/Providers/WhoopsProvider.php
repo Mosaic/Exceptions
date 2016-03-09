@@ -1,13 +1,13 @@
 <?php
 
-namespace Mosaic\Exceptions\Definitions;
+namespace Mosaic\Exceptions\Providers;
 
 use Mosaic\Exceptions\Adapters\Whoops\Runner as Adapter;
 use Mosaic\Exceptions\Runner;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
-class WhoopsDefinition extends ExceptionHandlerDefinition
+class WhoopsProvider extends ExceptionHandlerProvider
 {
     /**
      * @return Runner

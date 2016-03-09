@@ -3,8 +3,8 @@
 namespace Mosaic\Exceptions;
 
 use Mosaic\Common\Components\AbstractComponent;
-use Mosaic\Exceptions\Definitions\BoobooDefinition;
-use Mosaic\Exceptions\Definitions\WhoopsDefinition;
+use Mosaic\Exceptions\Providers\BoobooProvider;
+use Mosaic\Exceptions\Providers\WhoopsProvider;
 
 /**
  * @method static $this whoops()
@@ -18,7 +18,7 @@ final class Component extends AbstractComponent
     public function resolveWhoops() : array
     {
         return [
-            new WhoopsDefinition()
+            new WhoopsProvider()
         ];
     }
 
@@ -28,7 +28,7 @@ final class Component extends AbstractComponent
     public function resolveBooboo() : array
     {
         return [
-            new BoobooDefinition()
+            new BoobooProvider()
         ];
     }
 

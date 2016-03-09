@@ -1,12 +1,12 @@
 <?php
 
-namespace Mosaic\Exceptions\Definitions;
+namespace Mosaic\Exceptions\Providers;
 
 use League\BooBoo\Runner as BooBoo;
 use Mosaic\Exceptions\Adapters\Booboo\Runner as Adapter;
 use Mosaic\Exceptions\Runner;
 
-class BoobooDefinition extends ExceptionHandlerDefinition
+class BoobooProvider extends ExceptionHandlerDefinition
 {
     /**
      * @return Runner
