@@ -5,6 +5,8 @@ namespace Mosaic\Exceptions\Tests;
 use Mosaic\Exceptions\Component;
 use Mosaic\Exceptions\Providers\BoobooProvider;
 use Mosaic\Exceptions\Providers\WhoopsProvider;
+use Whoops\Handler\PlainTextHandler;
+use Whoops\Handler\PrettyPageHandler;
 
 class ComponentTest extends \PHPUnit_Framework_TestCase
 {
@@ -39,5 +41,40 @@ class ComponentTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Component::class, $component);
         $this->assertEquals('customExceptionHandler', $component->getImplementation());
         $this->assertEquals([new WhoopsProvider()], $component->getProviders());
+    }
+
+    public function test_can_add_formatters()
+    {
+        $component = Component::whoops()->formatters(
+            $formatter = new PrettyPageHandler
+        );
+
+        $this->assertInstanceOf(Component::class, $component);
+        $this->assertEquals('whoops', $component->getImplementation());
+        $this->assertEquals([new WhoopsProvider([], [$formatter])], $component->getProviders());
+    }
+
+    public function test_can_add_handlers()
+    {
+        $component = Component::whoops()->handlers(
+            $handler = new PrettyPageHandler
+        );
+
+        $this->assertInstanceOf(Component::class, $component);
+        $this->assertEquals('whoops', $component->getImplementation());
+        $this->assertEquals([new WhoopsProvider([$handler], [])], $component->getProviders());
+    }
+
+    public function test_can_add_handlers_and_formatters()
+    {
+        $component = Component::whoops()->handlers(
+            $handler = new PrettyPageHandler
+        )->formatters(
+            $formatter = new PlainTextHandler
+        );
+
+        $this->assertInstanceOf(Component::class, $component);
+        $this->assertEquals('whoops', $component->getImplementation());
+        $this->assertEquals([new WhoopsProvider([$handler], [$formatter])], $component->getProviders());
     }
 }

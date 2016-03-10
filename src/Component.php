@@ -13,12 +13,22 @@ use Mosaic\Exceptions\Providers\WhoopsProvider;
 final class Component extends AbstractComponent
 {
     /**
+     * @var array
+     */
+    protected $handlers = [];
+
+    /**
+     * @var array
+     */
+    protected $formatters = [];
+
+    /**
      * @return array
      */
     public function resolveWhoops() : array
     {
         return [
-            new WhoopsProvider()
+            new WhoopsProvider($this->handlers, $this->formatters)
         ];
     }
 
@@ -28,7 +38,7 @@ final class Component extends AbstractComponent
     public function resolveBooboo() : array
     {
         return [
-            new BoobooProvider()
+            new BoobooProvider($this->handlers, $this->formatters)
         ];
     }
 
@@ -39,5 +49,27 @@ final class Component extends AbstractComponent
     public function resolveCustom(callable $callback) : array
     {
         return $callback();
+    }
+
+    /**
+     * @param mixed ...$handlers
+     * @return $this
+     */
+    public function handlers(...$handlers)
+    {
+        $this->handlers = $handlers;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed ...$formatters
+     * @return $this
+     */
+    public function formatters(...$formatters)
+    {
+        $this->formatters = $formatters;
+
+        return $this;
     }
 }
