@@ -17,13 +17,15 @@
     }
   ],
   "require": {
-    "php": ">=7.0.0"
+    "php": ">=7.0.0",
+    "mosaic/common": "dev-master",
+    "container-interop/definition-interop": "~0.2.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.1",
     "mockery/mockery": "1.0.x-dev",
     "league/booboo": "^1.0",
-    "filp/whoops": "dev-master#da04b6feb282ba491408e779d1dd67fa8703471b"
+    "filp/whoops": "dev-master#1de56025c4251e33ee88ea138b11081edb697e2a"
   },
   "suggest": {
     "league/booboo": "Booboo as exception handler (^1.0)",
@@ -38,5 +40,11 @@
     "psr-4": {
       "Mosaic\\Exceptions\\Tests\\": "tests/"
     }
-  }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:Mosaic/Common.git"
+    }
+  ]
 }

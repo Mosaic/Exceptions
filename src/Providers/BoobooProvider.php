@@ -6,7 +6,7 @@ use League\BooBoo\Runner as BooBoo;
 use Mosaic\Exceptions\Adapters\Booboo\Runner as Adapter;
 use Mosaic\Exceptions\Runner;
 
-class BoobooProvider extends ExceptionHandlerDefinition
+class BoobooProvider extends ExceptionHandlerProvider
 {
     /**
      * @return Runner
