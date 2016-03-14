@@ -5,6 +5,7 @@ namespace Mosaic\Exceptions;
 use Mosaic\Common\Components\AbstractComponent;
 use Mosaic\Exceptions\Providers\BoobooProvider;
 use Mosaic\Exceptions\Providers\WhoopsProvider;
+use Whoops\Handler\CallbackHandler;
 
 /**
  * @method static $this whoops()
@@ -27,6 +28,18 @@ final class Component extends AbstractComponent
      */
     public function resolveWhoops() : array
     {
+        foreach ($this->formatters as $key => $formatter) {
+            if (is_callable($formatter)) {
+                $this->formatters[$key] = new CallbackHandler($formatter);
+            }
+        }
+
+        foreach ($this->handlers as $key => $handler) {
+            if (is_callable($handler)) {
+                $this->handlers[$key] = new CallbackHandler($handler);
+            }
+        }
+
         return [
             new WhoopsProvider($this->handlers, $this->formatters)
         ];
